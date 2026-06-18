@@ -958,6 +958,57 @@ footer {
   flex-direction: column;
   align-items: center;
   gap: 0.4rem;
+  overflow: hidden;
+}
+
+.adsterra-banner-slot div, 
+.adsterra-tab-banner {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .adsterra-banner-slot div iframe, 
+  .adsterra-tab-banner iframe {
+    transform: scale(0.9);
+    transform-origin: center top;
+  }
+}
+
+@media (max-width: 600px) {
+  .adsterra-banner-slot div iframe, 
+  .adsterra-tab-banner iframe {
+    transform: scale(0.75);
+    transform-origin: center top;
+  }
+  .adsterra-banner-slot, .adsterra-tab-banner {
+    max-height: 70px;
+    margin-bottom: 0.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .adsterra-banner-slot div iframe, 
+  .adsterra-tab-banner iframe {
+    transform: scale(0.6);
+    transform-origin: center top;
+  }
+  .adsterra-banner-slot, .adsterra-tab-banner {
+    max-height: 55px;
+    margin-bottom: 0.5rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .adsterra-banner-slot div iframe, 
+  .adsterra-tab-banner iframe {
+    transform: scale(0.48);
+    transform-origin: center top;
+  }
+  .adsterra-banner-slot, .adsterra-tab-banner {
+    max-height: 45px;
+    margin-bottom: 0.5rem !important;
+  }
 }
 
 .adsterra-badge {
