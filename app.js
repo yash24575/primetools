@@ -342,3 +342,32 @@ window.onclick = function(event) {
     }
   });
 }
+
+// Auto open Quizzes tab & start Football Quiz on page load
+window.addEventListener('DOMContentLoaded', () => {
+  // Wait a small bit to ensure DOM elements are ready
+  setTimeout(() => {
+    // Select the quizzes tab button and click it programmatically
+    const buttons = document.querySelectorAll('.tab-btn');
+    let quizzesBtn = null;
+    buttons.forEach(btn => {
+      if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes('quizzes')) {
+        quizzesBtn = btn;
+      }
+    });
+
+    if (quizzesBtn) {
+      // Deactivate other tabs
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(c => c.classList.remove('active'));
+      buttons.forEach(b => b.classList.remove('active'));
+      
+      // Activate Quizzes Tab
+      document.getElementById('quizzes-tab').classList.add('active');
+      quizzesBtn.classList.add('active');
+    }
+    
+    // Auto-start the football quiz
+    startQuiz('football');
+  }, 100);
+});
