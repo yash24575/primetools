@@ -371,3 +371,106 @@ window.addEventListener('DOMContentLoaded', () => {
     startQuiz('football');
   }, 100);
 });
+
+// ── LUCKY SPIN WHEEL LOGIC ──────────────────────────────────
+const WHEEL_SECTORS = [
+  { label: "$1 Bonus", color: "#ff007f", isOffer: true },
+  { label: "Creator Pack", color: "#ffb703", isOffer: true },
+  { label: "$5 Reward", color: "#00b4d8", isOffer: true },
+  { label: "Try Again", color: "#33354a", isOffer: false },
+  { label: "Viral Hook Guide", color: "#ff6f00", isOffer: true },
+  { label: "Better Luck", color: "#1e2030", isOffer: false },
+];
+
+let wheelHasSpun = false;
+
+function openSpinWheel() {
+  openModal('spin-modal');
+  setTimeout(drawWheel, 50);
+}
+
+function drawWheel() {
+  const canvas = document.getElementById("wheel-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  const width = canvas.width;
+  const height = canvas.height;
+  const radius = width / 2;
+  const numSectors = WHEEL_SECTORS.length;
+  const arcSize = (2 * Math.PI) / numSectors;
+
+  ctx.clearRect(0, 0, width, height);
+
+  WHEEL_SECTORS.forEach((sec, idx) => {
+    const angle = idx * arcSize;
+    ctx.beginPath();
+    ctx.fillStyle = sec.color;
+    ctx.moveTo(radius, radius);
+    ctx.arc(radius, radius, radius - 10, angle, angle + arcSize);
+    ctx.lineTo(radius, radius);
+    ctx.fill();
+
+    // Draw segment text
+    ctx.save();
+    ctx.translate(radius, radius);
+    ctx.rotate(angle + arcSize / 2);
+    ctx.textAlign = "right";
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 12px 'Outfit', sans-serif";
+    ctx.fillText(sec.label, radius - 25, 5);
+    ctx.restore();
+  });
+
+  // Center hub circle decoration
+  ctx.beginPath();
+  ctx.fillStyle = "#050508";
+  ctx.arc(radius, radius, 25, 0, 2 * Math.PI);
+  ctx.fill();
+  ctx.strokeStyle = "#ff007f";
+  ctx.lineWidth = 3;
+  ctx.stroke();
+}
+
+function spinTheWheel() {
+  if (wheelHasSpun) {
+    alert("You have already used your free spin today! Redirecting to claim portal...");
+    window.open('https://www.effectivecpmnetwork.com/dncnmwuvv9?key=79d5ea5398e33b6b94e27617606a170c', '_blank');
+    return;
+  }
+
+  const canvas = document.getElementById("wheel-canvas");
+  const spinBtn = document.getElementById("spin-btn");
+  const resultBox = document.getElementById("spin-result-box");
+  if (!canvas || !spinBtn) return;
+
+  wheelHasSpun = true;
+  spinBtn.disabled = true;
+  spinBtn.textContent = "SPINNING...";
+  resultBox.style.display = "none";
+
+  // Force landing on sector 1 ($5 Reward) or sector 4 (Creator Pack) for optimal conversion
+  const winningIndices = [1, 2, 4];
+  const chosenIdx = winningIndices[Math.floor(Math.random() * winningIndices.length)];
+  const numSectors = WHEEL_SECTORS.length;
+  const arcSize = 360 / numSectors;
+
+  // Calculate target rotation to make pointer align with sector
+  // Pointer is at the top (270 degrees). Segment 0 starts at 0 rad.
+  const targetDeg = (360 * 5) - (chosenIdx * arcSize) - (arcSize / 2) - 90;
+
+  canvas.style.transform = `rotate(${targetDeg}deg)`;
+
+  setTimeout(() => {
+    const winItem = WHEEL_SECTORS[chosenIdx];
+    resultBox.innerHTML = `🎉 Congratulations! You won: <span style="color:var(--accent-pink)">${winItem.label}</span>!`;
+    resultBox.style.display = "flex";
+    spinBtn.disabled = false;
+    spinBtn.textContent = "CLAIM REWARD";
+    
+    // Change onclick event to redirect to dynamic high-cpm Smartlink
+    spinBtn.onclick = () => {
+      window.open('https://www.effectivecpmnetwork.com/dncnmwuvv9?key=79d5ea5398e33b6b94e27617606a170c', '_blank');
+      closeModal('spin-modal');
+    };
+  }, 6100);
+}

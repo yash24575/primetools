@@ -370,14 +370,14 @@
           <p>Unravel the secrets of parallel universes, black holes, and mysterious cosmic events in this celestial test.</p>
           <span class="read-more">Play Quiz Now <i class="fa-solid fa-gamepad"></i></span>
         </div>
-        <!-- Smartlink Reward Offer Card (High CTR) -->
-        <div class="glass-card katha-item" onclick="window.open('https://www.effectivecpmnetwork.com/dncnmwuvv9?key=79d5ea5398e33b6b94e27617606a170c', '_blank')">
+        <!-- Smartlink Reward Offer Card (High CTR Spin Wheel integration) -->
+        <div class="glass-card katha-item" onclick="openSpinWheel()">
           <div class="katha-icon" style="background: rgba(255, 0, 127, 0.1); border-color: var(--accent-pink); color: var(--accent-pink); text-shadow: 0 0 8px var(--glow-pink);">
-            <i class="fa-solid fa-gift"></i>
+            <i class="fa-solid fa-dharmachakra fa-spin" style="animation: fa-spin 8s linear infinite;"></i>
           </div>
           <h3>Claim Free Reward & Spin</h3>
-          <p>Get instant access to premium creator graphic packs, viral background templates, and surprise rewards.</p>
-          <span class="read-more" style="color: var(--accent-pink);">Claim Reward Now <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          <p>Spin the lucky wheel to instantly win premium creator graphic packs, background templates, and gift cards.</p>
+          <span class="read-more" style="color: var(--accent-pink);">Launch Spin Wheel <i class="fa-solid fa-dharmachakra"></i></span>
         </div>
       </div>
     </div>
@@ -534,6 +534,29 @@
       <div class="modal-body" style="font-size: 0.95rem; text-align: left; max-height: 50vh; overflow-y: auto; color: var(--text-secondary);">
         <p><strong>IMPORTANT:</strong> All financial calculations, compounding estimations, and investment growth figures shown on PrimeTools AI are strictly for educational and illustrative purposes.</p>
         <p style="margin-top: 0.5rem;">We do not offer professional investment advice. Mutual funds and stock investments are subject to market risks. Please consult a certified financial advisor before making actual investments.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPIN WHEEL MODAL -->
+  <div id="spin-modal" class="modal">
+    <div class="glass-card modal-content" style="max-width: 480px; text-align: center;">
+      <span class="close-btn" onclick="closeModal('spin-modal')">&times;</span>
+      <h2><i class="fa-solid fa-dharmachakra"></i> Lucky Rewards Spin</h2>
+      <div class="modal-body" style="align-items: center; gap: 1rem;">
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">Spin to claim premium creator graphic asset bundles, viral backgrounds, and cash referral rewards!</p>
+        
+        <!-- Spin Canvas Container -->
+        <div class="wheel-container" style="position: relative; margin: 1.5rem 0; width: 260px; height: 260px;">
+          <canvas id="wheel-canvas" width="260" height="260" style="border-radius: 50%; border: 4px solid var(--accent-pink); box-shadow: 0 0 20px var(--glow-pink); transition: transform 6s cubic-bezier(0.1, 0.8, 0.1, 1);"></style>
+          <div class="wheel-pointer" style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid var(--accent-pink); z-index: 10;"></div>
+        </div>
+
+        <button id="spin-btn" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-pink), var(--accent-gold)); box-shadow: 0 4px 15px var(--glow-pink); width: 80%;" onclick="spinTheWheel()">TAP TO SPIN</button>
+        
+        <div id="spin-result-box" class="result-row highlight-gold" style="display: none; justify-content: center; font-size: 1.15rem; font-weight: 700; margin-top: 1rem; text-shadow: 0 0 8px rgba(255,183,3,0.4);">
+          Result goes here...
+        </div>
       </div>
     </div>
   </div>
