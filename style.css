@@ -1064,3 +1064,47 @@ footer {
 .footer-legal-links a:hover {
   color: var(--accent-gold) !important;
 }
+
+/* STICKY SIDE BANNERS (LEFT & RIGHT) */
+.sticky-ad-left, .sticky-ad-right {
+  position: fixed;
+  top: 55%;
+  transform: translateY(-50%);
+  width: 110px;
+  height: 580px;
+  background: rgba(13, 15, 30, 0.45);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.sticky-ad-left {
+  left: 10px;
+}
+
+.sticky-ad-right {
+  right: 10px;
+}
+
+.side-ad-wrapper {
+  width: 728px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(90deg) scale(0.75);
+  transform-origin: center;
+}
+
+@media (max-width: 1300px) {
+  .sticky-ad-left, .sticky-ad-right {
+    display: none;
+  }
+}
