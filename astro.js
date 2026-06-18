@@ -171,6 +171,182 @@ function matchKundli() {
   document.getElementById("match-results").style.display = "flex";
 }
 
+
+// ── NUMEROLOGY ENGINE ────────────────────────────────────────
+const NUMEROLOGY_DATA = {
+  1: {
+    personality: "You are a natural-born leader with strong willpower and independence. Known for your courage and ambition, you inspire others with your bold vision and determined spirit. You are creative, self-reliant, and a pioneer in whatever you pursue.",
+    lucky_day: "Sunday ☀️",
+    lucky_stone: "Ruby (Manikya) 💎"
+  },
+  2: {
+    personality: "You are sensitive, empathetic, and deeply intuitive. Your diplomatic nature makes you an excellent peacemaker. You thrive in partnerships and bring harmony, balance, and compassion to every relationship and situation.",
+    lucky_day: "Monday 🌙",
+    lucky_stone: "Pearl (Moti) 🤍"
+  },
+  3: {
+    personality: "You are creative, joyful, and highly communicative. Naturally talented in arts, writing, and speaking, you radiate positive energy wherever you go. Your optimism and humor attract opportunities and people effortlessly.",
+    lucky_day: "Thursday 🪐",
+    lucky_stone: "Yellow Sapphire (Pukhraj) 💛"
+  },
+  4: {
+    personality: "You are hardworking, methodical, and deeply reliable. You build everything on solid foundations through discipline and dedication. Trustworthy and practical, you are the bedrock upon which others depend.",
+    lucky_day: "Saturday 🪐",
+    lucky_stone: "Blue Sapphire (Neelam) 💙"
+  },
+  5: {
+    personality: "You are adventurous, versatile, and freedom-loving. Naturally curious and adaptable, you thrive on change and new experiences. Your charm and wit make you magnetic, and your sharp mind allows you to excel in many fields.",
+    lucky_day: "Wednesday ☿",
+    lucky_stone: "Emerald (Panna) 💚"
+  },
+  6: {
+    personality: "You are nurturing, loving, and highly responsible. Your sense of duty to family and community is unmatched. You have a deep love for beauty, harmony, and comfort, making your home and relationships feel like sanctuaries.",
+    lucky_day: "Friday ♀",
+    lucky_stone: "Diamond (Heera) / Opal 💍"
+  },
+  7: {
+    personality: "You are the seeker — deeply analytical, spiritual, and introspective. You crave knowledge, wisdom, and truth. Your inner world is rich and complex, and you often possess psychic or intuitive gifts that guide you in life.",
+    lucky_day: "Monday 🌙",
+    lucky_stone: "Cat's Eye (Lehsunia) 🟡"
+  },
+  8: {
+    personality: "You are ambitious, authoritative, and built for success. You possess immense inner strength and business acumen. Challenges only make you stronger. You are destined for material achievement, wealth, and great influence.",
+    lucky_day: "Saturday ♄",
+    lucky_stone: "Blue Sapphire (Neelam) / Amethyst 🔵"
+  },
+  9: {
+    personality: "You are compassionate, idealistic, and universally oriented. A true humanitarian at heart, you want to improve the world around you. Deeply spiritual, creative, and emotionally rich — you inspire others through your selfless love and wisdom.",
+    lucky_day: "Tuesday ♂️",
+    lucky_stone: "Red Coral (Moonga) 🔴"
+  }
+};
+
+function calculateNumerology() {
+  const name = document.getElementById("num-name").value.trim();
+  if (!name) {
+    alert("कृपया अपना नाम दर्ज करें (Please enter your name).");
+    return;
+  }
+
+  // Pythagorean system: A-Z → 1-9
+  const letterValues = {
+    A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9,
+    J: 1, K: 2, L: 3, M: 4, N: 5, O: 6, P: 7, Q: 8, R: 9,
+    S: 1, T: 2, U: 3, V: 4, W: 5, X: 6, Y: 7, Z: 8
+  };
+  let sum = 0;
+  name.toUpperCase().replace(/[^A-Z]/g, "").split("").forEach(ch => {
+    sum += letterValues[ch] || 0;
+  });
+
+  // Reduce to single digit (except master numbers 11, 22)
+  while (sum > 9 && sum !== 11 && sum !== 22) {
+    sum = sum.toString().split("").reduce((a, b) => parseInt(a) + parseInt(b), 0);
+  }
+  const finalNum = sum > 9 ? 9 : sum; // fallback for master numbers
+  const data = NUMEROLOGY_DATA[finalNum];
+
+  document.getElementById("num-life-number").textContent = sum;
+  document.getElementById("num-personality").textContent = data.personality;
+  document.getElementById("num-lucky-day").textContent = data.lucky_day;
+  document.getElementById("num-lucky-stone").textContent = data.lucky_stone;
+  document.getElementById("numerology-results").style.display = "flex";
+}
+
+// ── PANCHANG ENGINE ─────────────────────────────────────────
+const TITHIS = ["Pratipada (प्रतिपदा)", "Dwitiya (द्वितीया)", "Tritiya (तृतीया)", "Chaturthi (चतुर्थी)", "Panchami (पंचमी)", "Shashthi (षष्ठी)", "Saptami (सप्तमी)", "Ashtami (अष्टमी)", "Navami (नवमी)", "Dashami (दशमी)", "Ekadashi (एकादशी)", "Dwadashi (द्वादशी)", "Trayodashi (त्रयोदशी)", "Chaturdashi (चतुर्दशी)", "Purnima (पूर्णिमा)"];
+const NAKSHATRAS = ["Ashwini (अश्विनी)", "Bharani (भरणी)", "Krittika (कृत्तिका)", "Rohini (रोहिणी)", "Mrigashira (मृगशिरा)", "Ardra (आर्द्रा)", "Punarvasu (पुनर्वसु)", "Pushya (पुष्य)", "Ashlesha (आश्लेषा)", "Magha (मघा)", "Purva Phalguni (पूर्व फाल्गुनी)", "Uttara Phalguni (उत्तर फाल्गुनी)", "Hasta (हस्त)", "Chitra (चित्रा)", "Swati (स्वाति)", "Vishakha (विशाखा)", "Anuradha (अनुराधा)", "Jyeshtha (ज्येष्ठा)", "Moola (मूल)", "Purva Ashadha (पूर्वाषाढा)", "Uttara Ashadha (उत्तराषाढा)", "Shravana (श्रावण)", "Dhanishtha (धनिष्ठा)", "Shatabhisha (शतभिषा)", "Purva Bhadrapada (पूर्व भाद्रपद)", "Uttara Bhadrapada (उत्तर भाद्रपद)", "Revati (रेवती)"];
+const YOGAS = ["Vishkambha", "Priti", "Ayushman", "Saubhagya", "Shobhana", "Atiganda", "Sukarma", "Dhriti", "Shula", "Ganda", "Vriddhi", "Dhruva", "Vyaghata", "Harshana", "Vajra", "Siddhi", "Vyatipata", "Variyan", "Parigha", "Shiva", "Siddha", "Sadhya", "Shubha", "Sukla", "Brahma", "Indra", "Vaidhriti"];
+const KARANAS = ["Bava", "Balava", "Kaulava", "Taitila", "Garaja", "Vanija", "Vishti"];
+
+function showPanchang() {
+  const now = new Date();
+  const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+  const tithi = TITHIS[dayOfYear % 15];
+  const nakshatra = NAKSHATRAS[dayOfYear % 27];
+  const yoga = YOGAS[dayOfYear % 27];
+  const karana = KARANAS[dayOfYear % 7];
+
+  document.getElementById("panchang-date").textContent = now.toLocaleDateString('hi-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+  const grid = document.getElementById("panchang-grid");
+  grid.innerHTML = [
+    { label: "🌑 Tithi (तिथि)", value: tithi },
+    { label: "⭐ Nakshatra (नक्षत्र)", value: nakshatra },
+    { label: "🔱 Yoga (योग)", value: yoga },
+    { label: "📿 Karana (करण)", value: karana }
+  ].map(item => `
+    <div style="background: rgba(255,111,0,0.06); border: 1px solid rgba(255,111,0,0.15); border-radius: 8px; padding: 0.75rem; text-align: center;">
+      <span style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.3rem;">${item.label}</span>
+      <span style="font-weight: 700; font-size: 0.9rem;">${item.value}</span>
+    </div>
+  `).join('');
+
+  const muhurtas = ["Brahma Muhurta (4:24 AM - 5:12 AM) — सर्वोत्तम मुहूर्त, ध्यान और पूजा के लिए", "Abhijit Muhurta (11:52 AM - 12:48 PM) — दिन का सबसे शुभ समय, नए काम शुरू करें", "Godhuli Muhurta (6:00 PM - 6:24 PM) — संध्या आरती और घर लौटने का शुभ समय"];
+  document.getElementById("panchang-muhurta").innerHTML = `<strong style="color: var(--accent-saffron);">✨ Aaj ke Shubh Muhurta:</strong><br><small>${muhurtas[dayOfYear % 3]}</small>`;
+
+  document.getElementById("panchang-results").style.display = "flex";
+}
+
+// ── GEMSTONE RECOMMENDER ─────────────────────────────────────
+const GEMSTONE_DATA = {
+  mesh: { icon: "🔴", name: "Red Coral (लाल मूंगा)", hindi: "मंगल ग्रह रत्न", benefits: "साहस, ऊर्जा, शक्ति और आत्मविश्वास में वृद्धि। रक्त विकार, कमजोरी और मानसिक तनाव दूर करता है। करियर और व्यापार में उन्नति मिलती है।", planet: "Mars (मंगल) ♂️", day: "Tuesday (मंगलवार)" },
+  vrishabh: { icon: "💎", name: "Diamond (हीरा) / Opal", hindi: "शुक्र ग्रह रत्न", benefits: "सौंदर्य, प्रेम, विलासिता और आर्थिक समृद्धि लाता है। व्यापार में वृद्धि, जीवनसाथी से प्रेम और कलात्मक प्रतिभा को उजागर करता है।", planet: "Venus (शुक्र) ♀", day: "Friday (शुक्रवार)" },
+  mithun: { icon: "💚", name: "Emerald (पन्ना)", hindi: "बुध ग्रह रत्न", benefits: "बुद्धि, वाणी, व्यापार और संचार शक्ति बढ़ाता है। स्मरण शक्ति तेज होती है। मानसिक शांति, विद्यार्थियों और व्यापारियों के लिए विशेष लाभकारी।", planet: "Mercury (बुध) ☿", day: "Wednesday (बुधवार)" },
+  kark: { icon: "🤍", name: "Pearl (मोती)", hindi: "चंद्रमा रत्न", benefits: "मन को शांत करता है, भावनात्मक स्थिरता देता है। माँ और परिवार से संबंध मजबूत होते हैं। नींद की समस्या दूर होती है और सौभाग्य में वृद्धि होती है।", planet: "Moon (चंद्र) 🌙", day: "Monday (सोमवार)" },
+  sinh: { icon: "🔶", name: "Ruby (माणिक)", hindi: "सूर्य ग्रह रत्न", benefits: "नेतृत्व, सम्मान और प्रतिष्ठा में वृद्धि। सरकारी कार्यों में सफलता। आत्मशक्ति बढ़ती है और जीवन में तेज और वैभव आता है।", planet: "Sun (सूर्य) ☀️", day: "Sunday (रविवार)" },
+  kanya: { icon: "💚", name: "Emerald (पन्ना)", hindi: "बुध ग्रह रत्न", benefits: "विश्लेषण शक्ति, स्वास्थ्य और व्यवसाय में सुधार। लेखन, शिक्षा और चिकित्सा क्षेत्र में सफलता। मस्तिष्क की क्षमता और एकाग्रता बढ़ती है।", planet: "Mercury (बुध) ☿", day: "Wednesday (बुधवार)" },
+  tula: { icon: "💎", name: "Diamond (हीरा)", hindi: "शुक्र ग्रह रत्न", benefits: "वैवाहिक जीवन में सुख, सौंदर्य और कला में सफलता। व्यापार में समृद्धि। मित्रता और प्रेम संबंध मजबूत होते हैं। आर्थिक स्थिति बेहतर होती है।", planet: "Venus (शुक्र) ♀", day: "Friday (शुक्रवार)" },
+  vrishchik: { icon: "🔴", name: "Red Coral (लाल मूंगा)", hindi: "मंगल ग्रह रत्न", benefits: "शत्रुओं पर विजय, रोगों से मुक्ति और साहस में वृद्धि। कर्ज से छुटकारा मिलता है। जासूसी, सेना, पुलिस और शोध कार्यों में सफलता देता है।", planet: "Mars (मंगल) ♂️", day: "Tuesday (मंगलवार)" },
+  dhanu: { icon: "💛", name: "Yellow Sapphire (पुखराज)", hindi: "बृहस्पति रत्न", benefits: "धन, ज्ञान, उच्च शिक्षा और आध्यात्मिकता में वृद्धि। विवाह के योग बनते हैं। न्याय, धर्म और गुरु की कृपा प्राप्त होती है।", planet: "Jupiter (बृहस्पति) ♃", day: "Thursday (गुरुवार)" },
+  makar: { icon: "🔵", name: "Blue Sapphire (नीलम)", hindi: "शनि ग्रह रत्न", benefits: "करियर में तरक्की, अनुशासन और धैर्य में वृद्धि। दीर्घकालिक सफलता और स्थायित्व मिलता है। न्याय और शनि देव की कृपा प्राप्त होती है।", planet: "Saturn (शनि) ♄", day: "Saturday (शनिवार)" },
+  kumbh: { icon: "🔵", name: "Blue Sapphire (नीलम) / Amethyst", hindi: "शनि ग्रह रत्न", benefits: "अद्भुत मानसिक स्पष्टता, नवाचार और वैज्ञानिक सोच में वृद्धि। सामाजिक कार्यों में सफलता। कुंभ राशि की अनूठी बुद्धि को और तेज करता है।", planet: "Saturn (शनि) ♄", day: "Saturday (शनिवार)" },
+  meen: { icon: "💛", name: "Yellow Sapphire (पुखराज)", hindi: "बृहस्पति रत्न", benefits: "आध्यात्मिक ज्ञान, कलात्मक प्रतिभा और मानसिक शांति में वृद्धि। धन और सुख-समृद्धि आती है। जीवन में दिव्य मार्गदर्शन प्राप्त होता है।", planet: "Jupiter (बृहस्पति) ♃", day: "Thursday (गुरुवार)" }
+};
+
+function getGemstone() {
+  const sign = document.getElementById("gem-sign").value;
+  const data = GEMSTONE_DATA[sign];
+  document.getElementById("gem-icon").textContent = data.icon;
+  document.getElementById("gem-name").textContent = data.name;
+  document.getElementById("gem-hindi").textContent = data.hindi;
+  document.getElementById("gem-benefits").textContent = data.benefits;
+  document.getElementById("gem-planet").textContent = data.planet;
+  document.getElementById("gem-day").textContent = data.day;
+  document.getElementById("gemstone-results").style.display = "flex";
+}
+
+// ── VRAT CALENDAR ───────────────────────────────────────────
+const UPCOMING_VRATS = [
+  { name: "🌙 Somvati Amavasya (सोमवती अमावस्या)", date: "July 14, 2025", info: "Pitra tarpan aur Shiva puja ke liye ati shubh din." },
+  { name: "⚡ Hariyali Teej (हरियाली तीज)", date: "July 27, 2025", info: "Suhagan mahilaon ka prasiddh vrat. Bhagwan Shiva aur Parvati ki puja." },
+  { name: "🐘 Ganesh Chaturthi (गणेश चतुर्थी)", date: "August 27, 2025", info: "Vighnharta Ganesha ka janmotsav. 10 din ka mahotsav — sabse bada festival!" },
+  { name: "🌸 Navratri (शारदीय नवरात्रि)", date: "September 22, 2025", info: "Maa Durga ke 9 swarupon ki 9 din tak special puja aur vrat." },
+  { name: "💥 Dussehra (दशहरा)", date: "October 2, 2025", info: "Burai par achhai ki jeet ka utsav — Ravan dahan. Vijaya Dashami ka shubh din." },
+  { name: "🪔 Diwali (दीपावली)", date: "October 20, 2025", info: "Maa Lakshmi ka swaagat! Diye jalao, puja karo aur khushiyan bato." },
+  { name: "🐄 Govardhan Puja (गोवर्धन पूजा)", date: "October 21, 2025", info: "Bhagwan Krishna ne Govardhan parvat uthakar sab ki raksha ki — yeh din celebrate karo." },
+  { name: "💜 Chhath Puja (छठ पूजा)", date: "October 28, 2025", info: "Surya Dev aur Chhathi Maiya ki aradhanaa. 36 ghante ka nirjal vrat." }
+];
+
+function loadVratCalendar() {
+  const list = document.getElementById("vrat-list");
+  if (!list) return;
+  list.innerHTML = UPCOMING_VRATS.map(v => `
+    <div style="display: flex; gap: 1rem; background: rgba(255,183,3,0.04); border: 1px solid rgba(255,183,3,0.1); border-radius: 10px; padding: 0.8rem; align-items: flex-start;">
+      <div style="min-width: 90px; font-size: 0.75rem; font-weight: 700; color: var(--accent-gold); white-space: nowrap;">${v.date}</div>
+      <div>
+        <div style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem;">${v.name}</div>
+        <div style="font-size: 0.8rem; color: var(--text-secondary);">${v.info}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  loadVratCalendar();
+});
+
 // ── LEGAL MODAL LOGIC ───────────────────────────────────────
 function openModal(modalId) {
   const modal = document.getElementById(modalId);

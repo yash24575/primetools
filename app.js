@@ -60,6 +60,53 @@ function calculateCI() {
   document.getElementById("ci-results").style.display = "flex";
 }
 
+// EMI Calculator
+function calculateEMI() {
+  const amount = parseFloat(document.getElementById("emi-amount").value);
+  const rate = parseFloat(document.getElementById("emi-rate").value);
+  const years = parseFloat(document.getElementById("emi-tenure").value);
+
+  if (isNaN(amount) || isNaN(rate) || isNaN(years) || amount <= 0 || rate <= 0 || years <= 0) {
+    alert("Please enter valid positive values.");
+    return;
+  }
+
+  const months = years * 12;
+  const monthlyRate = (rate / 100) / 12;
+  const emi = amount * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
+  const totalPayment = emi * months;
+  const totalInterest = totalPayment - amount;
+
+  document.getElementById("res-emi-monthly").textContent = `₹${Math.round(emi).toLocaleString('en-IN')}`;
+  document.getElementById("res-emi-interest").textContent = `₹${Math.round(totalInterest).toLocaleString('en-IN')}`;
+  document.getElementById("res-emi-total").textContent = `₹${Math.round(totalPayment).toLocaleString('en-IN')}`;
+  document.getElementById("emi-results").style.display = "flex";
+}
+
+// Gold Investment Calculator
+function calculateGold() {
+  const grams = parseFloat(document.getElementById("gold-grams").value);
+  const buyPrice = parseFloat(document.getElementById("gold-buy-price").value);
+  const years = parseFloat(document.getElementById("gold-years").value);
+
+  if (isNaN(grams) || isNaN(buyPrice) || isNaN(years) || grams <= 0 || buyPrice <= 0) {
+    alert("Please enter valid positive values.");
+    return;
+  }
+
+  const CURRENT_GOLD_RATE = 7200; // INR per gram (approx live rate)
+  const GOLD_ANNUAL_GROWTH = 10; // historical ~10% p.a.
+  const invested = grams * buyPrice;
+  const currentValue = grams * CURRENT_GOLD_RATE;
+  const futureValue = grams * CURRENT_GOLD_RATE * Math.pow(1 + (GOLD_ANNUAL_GROWTH / 100), years);
+
+  document.getElementById("res-gold-invested").textContent = `₹${Math.round(invested).toLocaleString('en-IN')}`;
+  document.getElementById("res-gold-current").textContent = `₹${Math.round(currentValue).toLocaleString('en-IN')}`;
+  document.getElementById("res-gold-future").textContent = `₹${Math.round(futureValue).toLocaleString('en-IN')}`;
+  document.getElementById("gold-results").style.display = "flex";
+}
+
+
 // ── AI CREATOR TOOLS ────────────────────────────────────────
 
 const VIRAL_TEMPLATES = {
@@ -223,8 +270,63 @@ const QUIZ_DATA = {
       choices: ["Singularity", "Accretion Disk", "Event Horizon", "Schwarzschild Radius"],
       correct: 2
     }
+  ],
+  cricket: [
+    {
+      question: "Sachin Tendulkar scored his 100th international century against which country?",
+      choices: ["Pakistan", "Bangladesh", "Sri Lanka", "Australia"],
+      correct: 1
+    },
+    {
+      question: "MS Dhoni captained India to victory in which ICC World Cup in 2011?",
+      choices: ["T20 World Cup", "Champions Trophy", "ODI World Cup", "Test Championship"],
+      correct: 2
+    },
+    {
+      question: "Which Indian batsman is nicknamed 'The Wall' for his defensive batting style?",
+      choices: ["VVS Laxman", "Sourav Ganguly", "Rahul Dravid", "Anil Kumble"],
+      correct: 2
+    },
+    {
+      question: "Who scored the first-ever double century in ODI cricket history?",
+      choices: ["Rohit Sharma", "Sachin Tendulkar", "Brian Lara", "Chris Gayle"],
+      correct: 1
+    },
+    {
+      question: "How many World Cups has India won (combined T20 + ODI)?",
+      choices: ["2", "3", "4", "1"],
+      correct: 1
+    }
+  ],
+  bollywood: [
+    {
+      question: "Which Bollywood film holds the record for the highest all-time box office collection in India?",
+      choices: ["Bahubali 2", "Dangal", "KGF 2", "Jawan"],
+      correct: 0
+    },
+    {
+      question: "Who directed the iconic Bollywood film 'Dilwale Dulhania Le Jayenge' (DDLJ)?",
+      choices: ["Karan Johar", "Aditya Chopra", "Sanjay Leela Bhansali", "Raj Kumar Hirani"],
+      correct: 1
+    },
+    {
+      question: "Which actress starred alongside Aamir Khan in the blockbuster 'Dangal' (2016)?",
+      choices: ["Deepika Padukone", "Katrina Kaif", "Fatima Sana Shaikh", "Priyanka Chopra"],
+      correct: 2
+    },
+    {
+      question: "In which film did Shah Rukh Khan first play a negative lead role?",
+      choices: ["Anjaam", "Darr", "Baazigar", "Don"],
+      correct: 2
+    },
+    {
+      question: "What is the name of AR Rahman's iconic song from the movie 'Jai Ho'?",
+      choices: ["Vande Mataram", "Jai Ho", "Dil Se", "Roja"],
+      correct: 1
+    }
   ]
 };
+
 
 let activeQuestions = [];
 let currentQuestionIndex = 0;
@@ -316,6 +418,212 @@ function toggleFaq(button) {
     content.style.paddingTop = "0";
     icon.style.transform = "rotate(0deg)";
   }
+}
+
+// ── CHANNEL NAME GENERATOR ───────────────────────────────────
+const CHANNEL_NAMES = {
+  motivation: ["Rise & Shine Daily", "MindShift Pro", "Unstoppable You", "Victory Mindset", "ZenPeak Studios"],
+  tech: ["TechUnboxed", "ByteBlast India", "GadgetGuru Pro", "PixelPunch Tech", "CoreCraft Labs"],
+  finance: ["WealthWave India", "StockSense Daily", "MoneyMind Pro", "PaisaPlanner", "BullRun Analytics"],
+  gaming: ["ProGamerZone", "EpicPixelGames", "NightOwl Gaming", "LevelUpGaming", "XtremePlayz India"],
+  cricket: ["CricketCraze24", "Boundary Kings", "SixerNation", "PitchPerfect India", "WicketWorld Pro"],
+  cooking: ["SpiceRoute Kitchen", "DesiEats Daily", "TastyTales India", "FlavorFusion Pro", "MasalaChef"],
+  travel: ["WanderIndia Pro", "ViralVoyage", "ExploreUnchained", "RoamFree Diaries", "SoloTrekker"],
+  devotional: ["SpiritPath Daily", "SanatanDham Live", "BhaktiVibes", "MantraMinds", "DivineJyoti Channel"]
+};
+
+function generateChannelNames() {
+  const niche = document.getElementById("channel-niche").value;
+  const names = CHANNEL_NAMES[niche];
+  const list = document.getElementById("channel-names-list");
+  list.innerHTML = "";
+  names.forEach(name => {
+    const li = document.createElement("li");
+    li.textContent = name;
+    li.onclick = () => copyText(name, li);
+    list.appendChild(li);
+  });
+  document.getElementById("channel-output").style.display = "flex";
+}
+
+// ── BIO GENERATOR ────────────────────────────────────────────
+const BIO_TEMPLATES = {
+  youtuber: [
+    "[NAME] | Sharing viral content & untold stories 🎬 | Subscribe for weekly uploads 🔔 | DM for collabs 📩",
+    "🎥 [NAME] — Creating epic content that breaks the internet | 📌 New videos every week | Collab: [NAME]@gmail.com",
+    "[NAME] 🚀 | Storyteller • Creator • Visionary | Making India proud with quality content 🇮🇳"
+  ],
+  influencer: [
+    "[NAME] ✨ | Lifestyle • Fashion • Travel | Living life on my own terms 🌍 | DM for brand deals 📩",
+    "Hi, I'm [NAME]! 💫 Spreading positivity and style every day | Collab inquiries: [NAME]@gmail.com",
+    "[NAME] 🦋 | Authentic creator from India 🇮🇳 | Fashion • Culture • Life | 📩 DM for partnerships"
+  ],
+  trader: [
+    "[NAME] 📈 | Stock Market Trader & Investor | Sharing market insights daily | Not SEBI registered — DYOR ⚠️",
+    "🔥 [NAME] | Equity Trader • Options Expert • Wealth Builder | Daily market analysis on my channel 📊",
+    "[NAME] 💹 | Full-time trader & market educator | Teaching smart investing to 1 Lakh+ students 🎓"
+  ],
+  motivator: [
+    "[NAME] 🔥 | Motivational Speaker • Life Coach | Helping you unlock your true potential 🚀 | 1M+ inspired!",
+    "I'm [NAME] 💪 | Turning pain into power and dreams into reality | Daily motivation on my channel ✨",
+    "[NAME] ✊ | Success Coach • Author • Speaker | 'Your mindset is your greatest weapon.' | DM: Always open"
+  ],
+  cricketer: [
+    "[NAME] 🏏 | Die-hard cricket fan | Ball-by-ball analysis & match reviews | Join the cricket family 🇮🇳",
+    "🏆 [NAME] | Cricket Stats • Match Predictions • Highlights | Covering every major tournament live!",
+    "[NAME] 🎙️ | Cricket Commentator & Analyst | From gully cricket to international stage — we cover it all!"
+  ]
+};
+
+function generateBio() {
+  const name = document.getElementById("bio-name").value.trim() || "YourName";
+  const type = document.getElementById("bio-type").value;
+  const templates = BIO_TEMPLATES[type];
+  const list = document.getElementById("bio-list");
+  list.innerHTML = "";
+  templates.forEach(tpl => {
+    const bio = tpl.replaceAll("[NAME]", name);
+    const li = document.createElement("li");
+    li.textContent = bio;
+    li.onclick = () => copyText(bio, li);
+    list.appendChild(li);
+  });
+  document.getElementById("bio-output").style.display = "flex";
+}
+
+// ── FIFA PLAYER COMPARATOR ───────────────────────────────────
+const PLAYER_STATS = {
+  messi: {
+    name: "Lionel Messi 🐐",
+    nationality: "Argentina 🇦🇷",
+    goals: "838+",
+    assists: "380+",
+    ballon_dor: "8",
+    world_cups: "1 (2022)",
+    speed: "32.5 km/h",
+    dribbles: "World #1",
+    trophies: "43+"
+  },
+  ronaldo: {
+    name: "Cristiano Ronaldo",
+    nationality: "Portugal 🇵🇹",
+    goals: "890+",
+    assists: "255+",
+    ballon_dor: "5",
+    world_cups: "0",
+    speed: "34 km/h",
+    dribbles: "Top 5 Ever",
+    trophies: "34+"
+  },
+  mbappe: {
+    name: "Kylian Mbappe ⚡",
+    nationality: "France 🇫🇷",
+    goals: "380+",
+    assists: "180+",
+    ballon_dor: "0",
+    world_cups: "1 (2018)",
+    speed: "38 km/h",
+    dribbles: "World Top 3",
+    trophies: "25+"
+  },
+  neymar: {
+    name: "Neymar Jr",
+    nationality: "Brazil 🇧🇷",
+    goals: "315+",
+    assists: "220+",
+    ballon_dor: "0",
+    world_cups: "0",
+    speed: "36 km/h",
+    dribbles: "World Top 5",
+    trophies: "30+"
+  },
+  pele: {
+    name: "Pelé 🏆",
+    nationality: "Brazil 🇧🇷",
+    goals: "1281 (official 767)",
+    assists: "N/A (era)",
+    ballon_dor: "0 (era)",
+    world_cups: "3 (1958,62,70)",
+    speed: "N/A",
+    dribbles: "All-Time Legend",
+    trophies: "50+"
+  },
+  maradona: {
+    name: "Diego Maradona",
+    nationality: "Argentina 🇦🇷",
+    goals: "345+",
+    assists: "230+",
+    ballon_dor: "1 (era)",
+    world_cups: "1 (1986)",
+    speed: "N/A (era)",
+    dribbles: "All-Time Legend",
+    trophies: "20+"
+  }
+};
+
+function compareFootballPlayers() {
+  const p1 = PLAYER_STATS[document.getElementById("player1-select").value];
+  const p2 = PLAYER_STATS[document.getElementById("player2-select").value];
+  const grid = document.getElementById("player-stats-grid");
+  grid.innerHTML = `
+    ${renderPlayerCard(p1, "#ffb703")}
+    ${renderPlayerCard(p2, "#00b4d8")}
+  `;
+  document.getElementById("player-comparison-results").style.display = "block";
+}
+
+function renderPlayerCard(p, color) {
+  return `
+    <div style="background: rgba(255,255,255,0.02); border: 1px solid ${color}33; border-radius: 12px; padding: 1.25rem;">
+      <h3 style="color: ${color}; margin-bottom: 1rem; font-size: 1.15rem;">${p.name}</h3>
+      ${Object.entries({
+        '🌍 Country': p.nationality,
+        '⚽ Goals': p.goals,
+        '🎯 Assists': p.assists,
+        '🏆 Ballon d\'Or': p.ballon_dor,
+        '🌎 World Cups': p.world_cups,
+        '💨 Top Speed': p.speed,
+        '🪄 Dribbling': p.dribbles,
+        '🥇 Trophies': p.trophies
+      }).map(([k,v]) => `
+        <div style="display:flex; justify-content:space-between; padding:0.4rem 0; border-bottom:1px solid rgba(255,255,255,0.05); font-size:0.9rem;">
+          <span style="color:#a0a5c0;">${k}</span>
+          <span style="font-weight:600;">${v}</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+// ── MATCH SCORE PREDICTOR ────────────────────────────────────
+const TEAM_STRENGTH = {
+  Brazil: 92, Argentina: 91, France: 90, Germany: 87,
+  England: 85, Spain: 88, Portugal: 86, Italy: 84, India: 55
+};
+
+function predictMatchScore() {
+  const t1 = document.getElementById("team1-select").value;
+  const t2 = document.getElementById("team2-select").value;
+  if (t1 === t2) {
+    alert("Please select two different teams!");
+    return;
+  }
+  const s1 = TEAM_STRENGTH[t1] || 75;
+  const s2 = TEAM_STRENGTH[t2] || 75;
+  const diff = s1 - s2;
+  let g1 = Math.floor(Math.random() * 3);
+  let g2 = Math.floor(Math.random() * 3);
+  if (diff > 5) g1 += 1;
+  if (diff < -5) g2 += 1;
+
+  let analysis = "";
+  if (g1 > g2) analysis = `🔥 ${t1} dominate the match with strong pressing and clinical finishing! The home advantage played a key role.`;
+  else if (g2 > g1) analysis = `⚡ ${t2} pulled off a surprising away win with fast counter-attacks and solid defense!`;
+  else analysis = `🤝 A thrilling draw! Both teams showed equal determination and neither could break the deadlock.`;
+
+  document.getElementById("score-display").textContent = `${t1} ${g1} — ${g2} ${t2}`;
+  document.getElementById("score-analysis").textContent = analysis;
+  document.getElementById("score-predictor-results").style.display = "flex";
 }
 
 // ── LEGAL MODAL LOGIC ───────────────────────────────────────

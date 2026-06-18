@@ -229,6 +229,132 @@
       </div>
     </div>
 
+    <!-- Numerology + Panchang Row -->
+    <div class="grid-two-cols" style="margin-bottom: 2rem;">
+
+      <!-- Numerology Calculator -->
+      <div class="glass-card tool-card astro-card">
+        <div class="card-header">
+          <h3><i class="fa-solid fa-9"></i> नाम अंक ज्योतिष (Numerology Calculator)</h3>
+          <span class="badge" style="background: rgba(138,43,226,0.2); color:#c77dff; border-color:#c77dff;">Name Power</span>
+        </div>
+        <p class="tool-desc">Enter your name to discover your Life Path Number, Destiny Number, and what the universe says about you.</p>
+        <div class="calculator-inputs">
+          <div class="input-group">
+            <label for="num-name" style="color: var(--accent-gold);">Your Full Name (पूरा नाम)</label>
+            <input type="text" id="num-name" placeholder="e.g. Rahul Kumar">
+          </div>
+          <button class="btn btn-primary" style="background: linear-gradient(135deg, #8a2be2, #c77dff);" onclick="calculateNumerology()">🔢 Calculate Numerology</button>
+        </div>
+        <div class="calculator-results astro-results-box" id="numerology-results" style="display: none; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem;">
+          <div style="text-align:center; margin-bottom: 0.5rem;">
+            <div style="font-size: 3rem; font-weight: 800; color: #c77dff; text-shadow: 0 0 20px rgba(199,119,255,0.4);" id="num-life-number">0</div>
+            <p style="font-size: 0.8rem; color: var(--text-secondary);">Your Life Path Number</p>
+          </div>
+          <div style="background: rgba(138,43,226,0.08); border-left: 3px solid #8a2be2; padding: 0.75rem; border-radius: 4px;">
+            <h4 style="color: #c77dff; margin-bottom: 0.5rem;"><i class="fa-solid fa-star"></i> Personality & Destiny</h4>
+            <p id="num-personality" style="color: var(--text-secondary); font-size: 0.9rem;"></p>
+          </div>
+          <div class="astro-numbers-row" style="display: flex; gap: 1rem;">
+            <div style="flex: 1; text-align: center; background: rgba(255,255,255,0.03); padding: 0.75rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+              <span style="font-size: 0.75rem; color: var(--text-secondary);">Lucky Day</span>
+              <div id="num-lucky-day" style="font-size: 1rem; font-weight: 700; color: var(--accent-gold);"></div>
+            </div>
+            <div style="flex: 1; text-align: center; background: rgba(255,255,255,0.03); padding: 0.75rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+              <span style="font-size: 0.75rem; color: var(--text-secondary);">Lucky Stone</span>
+              <div id="num-lucky-stone" style="font-size: 1rem; font-weight: 700; color: var(--accent-blue);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Today's Panchang -->
+      <div class="glass-card tool-card astro-card">
+        <div class="card-header">
+          <h3><i class="fa-solid fa-calendar-days"></i> आज का पंचांग (Today's Panchang)</h3>
+          <span class="badge" style="background: rgba(255,111,0,0.2); color: var(--accent-saffron); border-color: var(--accent-saffron);">Hindu Calendar</span>
+        </div>
+        <p class="tool-desc">View today's Vedic Hindu calendar details — Tithi, Nakshatra, Yoga, Karana, and auspicious timings.</p>
+        <button class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-saffron), var(--accent-gold)); margin-bottom: 1rem;" onclick="showPanchang()">📅 Show Today's Panchang</button>
+        <div class="calculator-results astro-results-box" id="panchang-results" style="display: none; flex-direction: column; gap: 0.6rem;">
+          <div style="text-align: center; margin-bottom: 0.5rem;">
+            <h4 style="color: var(--accent-gold); font-size: 1rem;" id="panchang-date"></h4>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;" id="panchang-grid"></div>
+          <div style="background: rgba(255,111,0,0.08); border-left: 3px solid var(--accent-saffron); padding: 0.75rem; border-radius: 4px; margin-top: 0.5rem;">
+            <p id="panchang-muhurta" style="color: var(--text-primary); font-size: 0.9rem;"></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Gemstone + Vrat Calendar Row -->
+    <div class="grid-two-cols" style="margin-bottom: 2rem;">
+
+      <!-- Gemstone Recommender -->
+      <div class="glass-card tool-card astro-card">
+        <div class="card-header">
+          <h3><i class="fa-solid fa-gem"></i> रत्न सुझाव (Gemstone Recommender)</h3>
+          <span class="badge" style="background: rgba(0,180,216,0.2); color: var(--accent-blue); border-color: var(--accent-blue);">Astro Remedies</span>
+        </div>
+        <p class="tool-desc">Find your lucky gemstone based on your Rashi. Learn which stone will bring prosperity and positive energy.</p>
+        <div class="calculator-inputs">
+          <div class="input-group">
+            <label for="gem-sign" style="color: var(--accent-gold);">अपनी राशि चुनें</label>
+            <select id="gem-sign" style="background: rgba(13, 15, 30, 0.85); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 0.75rem; width: 100%; font-family: var(--font-body);">
+              <option value="mesh">मेष (Aries)</option>
+              <option value="vrishabh">वृषभ (Taurus)</option>
+              <option value="mithun">मिथुन (Gemini)</option>
+              <option value="kark">कर्क (Cancer)</option>
+              <option value="sinh">सिंह (Leo)</option>
+              <option value="kanya">कन्या (Virgo)</option>
+              <option value="tula">तुला (Libra)</option>
+              <option value="vrishchik">वृश्चिक (Scorpio)</option>
+              <option value="dhanu">धनु (Sagittarius)</option>
+              <option value="makar">मकर (Capricorn)</option>
+              <option value="kumbh">कुंभ (Aquarius)</option>
+              <option value="meen">मीन (Pisces)</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" style="background: linear-gradient(135deg, #00b4d8, #0077b6);" onclick="getGemstone()">💎 Get My Lucky Gemstone</button>
+        </div>
+        <div class="calculator-results astro-results-box" id="gemstone-results" style="display: none; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
+          <div style="text-align: center;">
+            <div id="gem-icon" style="font-size: 3rem; margin-bottom: 0.5rem;"></div>
+            <h3 id="gem-name" style="color: var(--accent-blue); margin-bottom: 0.25rem;"></h3>
+            <p id="gem-hindi" style="color: var(--text-secondary); font-size: 0.85rem;"></p>
+          </div>
+          <div style="background: rgba(0,180,216,0.06); border-left: 3px solid var(--accent-blue); padding: 0.75rem; border-radius: 4px;">
+            <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;"><i class="fa-solid fa-sparkles"></i> Benefits (लाभ)</h4>
+            <p id="gem-benefits" style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5;"></p>
+          </div>
+          <div style="display: flex; gap: 1rem;">
+            <div style="flex:1; text-align:center; background: rgba(255,255,255,0.03); padding: 0.6rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+              <span style="font-size: 0.75rem; color: var(--text-secondary);">Ruling Planet</span>
+              <div id="gem-planet" style="font-size: 0.95rem; font-weight: 700; color: var(--accent-gold);"></div>
+            </div>
+            <div style="flex:1; text-align:center; background: rgba(255,255,255,0.03); padding: 0.6rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+              <span style="font-size: 0.75rem; color: var(--text-secondary);">Best Day to Wear</span>
+              <div id="gem-day" style="font-size: 0.95rem; font-weight: 700; color: var(--accent-pink);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vrat/Fast Calendar -->
+      <div class="glass-card tool-card astro-card">
+        <div class="card-header">
+          <h3><i class="fa-solid fa-moon"></i> व्रत कैलेंडर (Vrat & Festival Calendar)</h3>
+          <span class="badge" style="background: rgba(255,183,3,0.2); color: var(--accent-gold); border-color: var(--accent-gold);">2025-26</span>
+        </div>
+        <p class="tool-desc">Important upcoming Hindu fasts, festivals, and auspicious dates to plan your spiritual journey.</p>
+        <div id="vrat-list" style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;"></div>
+      </div>
+
+    </div>
+
+
     <!-- Featured Passive Income Suite -->
     <h3 class="section-title"><i class="fa-solid fa-hand-holding-dollar"></i> Astro Rewards & Earning Zone</h3>
     <div class="passive-grid">

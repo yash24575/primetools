@@ -109,6 +109,9 @@
       <button class="tab-btn" onclick="switchTab('quizzes')">
         <i class="fa-solid fa-gamepad"></i> Trivia Quizzes
       </button>
+      <button class="tab-btn" onclick="switchTab('fifa')">
+        <i class="fa-solid fa-futbol"></i> FIFA Zone
+      </button>
     </div>
 
     <!-- TAB CONTENT: WEALTH PLANNERS -->
@@ -261,6 +264,84 @@
           </div>
         </div>
       </div>
+
+      <!-- EMI Calculator -->
+      <div class="grid-two-cols" style="margin-bottom: 2rem; margin-top: 2rem;">
+        <div class="glass-card tool-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-building-columns"></i> EMI Loan Calculator</h3>
+            <span class="badge badge-finance">High CPC</span>
+          </div>
+          <p class="tool-desc">Calculate your monthly EMI for home, car or personal loans easily.</p>
+          <div class="calculator-inputs">
+            <div class="input-group">
+              <label for="emi-amount">Loan Amount (₹)</label>
+              <input type="number" id="emi-amount" value="500000" min="1000">
+            </div>
+            <div class="input-group">
+              <label for="emi-rate">Interest Rate (% p.a.)</label>
+              <input type="number" id="emi-rate" value="8.5" min="1" max="30" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="emi-tenure">Loan Tenure (Years)</label>
+              <input type="number" id="emi-tenure" value="5" min="1" max="30">
+            </div>
+            <button class="btn btn-primary" onclick="calculateEMI()">Calculate EMI</button>
+          </div>
+          <div class="calculator-results" id="emi-results" style="display: none;">
+            <div class="result-row">
+              <span>Monthly EMI:</span>
+              <span id="res-emi-monthly" class="res-value highlight-gold">₹0</span>
+            </div>
+            <div class="result-row">
+              <span>Total Interest:</span>
+              <span id="res-emi-interest" class="res-value return-gain">₹0</span>
+            </div>
+            <div class="result-row total-wealth-row">
+              <span>Total Payment:</span>
+              <span id="res-emi-total" class="res-value highlight-cyan">₹0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gold Investment Calculator -->
+        <div class="glass-card tool-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-coins"></i> Gold Investment Calculator</h3>
+            <span class="badge badge-finance">Finance</span>
+          </div>
+          <p class="tool-desc">Calculate the current value and projected returns of your gold investments.</p>
+          <div class="calculator-inputs">
+            <div class="input-group">
+              <label for="gold-grams">Gold Quantity (Grams)</label>
+              <input type="number" id="gold-grams" value="10" min="0.1" step="0.1">
+            </div>
+            <div class="input-group">
+              <label for="gold-buy-price">Purchase Price (₹/gram)</label>
+              <input type="number" id="gold-buy-price" value="5500" min="100">
+            </div>
+            <div class="input-group">
+              <label for="gold-years">Holding Period (Years)</label>
+              <input type="number" id="gold-years" value="5" min="1" max="50">
+            </div>
+            <button class="btn btn-primary" onclick="calculateGold()">Calculate Gold Returns</button>
+          </div>
+          <div class="calculator-results" id="gold-results" style="display: none;">
+            <div class="result-row">
+              <span>Investment Cost:</span>
+              <span id="res-gold-invested" class="res-value">₹0</span>
+            </div>
+            <div class="result-row">
+              <span>Current Market Value:</span>
+              <span id="res-gold-current" class="res-value highlight-gold">₹0</span>
+            </div>
+            <div class="result-row total-wealth-row">
+              <span>Estimated Future Value:</span>
+              <span id="res-gold-future" class="res-value return-gain">₹0</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- TAB CONTENT: AI CREATOR TOOLS -->
@@ -330,6 +411,66 @@
           </div>
         </div>
       </div>
+
+      <!-- Channel Name Generator + Bio Generator -->
+      <div class="grid-two-cols" style="margin-top: 2rem;">
+        <!-- YouTube Channel Name Generator -->
+        <div class="glass-card tool-card">
+          <div class="card-header">
+            <h3><i class="fa-brands fa-youtube"></i> YouTube Channel Name Generator</h3>
+            <span class="badge badge-ai">Creator</span>
+          </div>
+          <p class="tool-desc">Generate unique and catchy YouTube channel names based on your niche and style.</p>
+          <div class="input-group" style="margin-bottom: 1rem;">
+            <label for="channel-niche">Channel Niche</label>
+            <select id="channel-niche">
+              <option value="motivation">Motivation & Self Help</option>
+              <option value="tech">Tech & Gadgets</option>
+              <option value="finance">Finance & Investing</option>
+              <option value="gaming">Gaming & Esports</option>
+              <option value="cricket">Cricket & Sports</option>
+              <option value="cooking">Food & Cooking</option>
+              <option value="travel">Travel & Vlog</option>
+              <option value="devotional">Devotional & Spiritual</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" onclick="generateChannelNames()">Generate Channel Names</button>
+          <div class="ai-output-box" id="channel-output" style="display: none; margin-top: 1rem;">
+            <h4>Suggested Channel Names:</h4>
+            <ul class="options-list" id="channel-names-list"></ul>
+          </div>
+        </div>
+
+        <!-- Bio Generator -->
+        <div class="glass-card tool-card">
+          <div class="card-header">
+            <h3><i class="fa-brands fa-instagram"></i> Instagram / YouTube Bio Generator</h3>
+            <span class="badge badge-ai">Creator</span>
+          </div>
+          <p class="tool-desc">Generate a professional and engaging bio for your social media profiles.</p>
+          <div class="calculator-inputs">
+            <div class="input-group">
+              <label for="bio-name">Your Name / Channel Name</label>
+              <input type="text" id="bio-name" placeholder="e.g. Yash Tech">
+            </div>
+            <div class="input-group">
+              <label for="bio-type">Profile Type</label>
+              <select id="bio-type">
+                <option value="youtuber">YouTube Creator</option>
+                <option value="influencer">Instagram Influencer</option>
+                <option value="trader">Stock Market Trader</option>
+                <option value="motivator">Motivational Speaker</option>
+                <option value="cricketer">Cricket Fan Page</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" onclick="generateBio()">Generate Bio</button>
+          </div>
+          <div class="ai-output-box" id="bio-output" style="display: none; margin-top: 1rem;">
+            <h4>Your Bio (Click to Copy):</h4>
+            <ul class="options-list" id="bio-list"></ul>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- TAB CONTENT: TRIVIA QUIZZES -->
@@ -368,6 +509,20 @@
           <div class="katha-icon"><i class="fa-solid fa-meteor"></i></div>
           <h3>Cosmic Mysteries Quiz</h3>
           <p>Unravel the secrets of parallel universes, black holes, and mysterious cosmic events in this celestial test.</p>
+          <span class="read-more">Play Quiz Now <i class="fa-solid fa-gamepad"></i></span>
+        </div>
+        <!-- Cricket Quiz Card -->
+        <div class="glass-card katha-item" onclick="startQuiz('cricket')">
+          <div class="katha-icon" style="background: rgba(0,180,216,0.1); border-color: var(--accent-blue); color: var(--accent-blue);"><i class="fa-solid fa-cricket-bat-ball"></i></div>
+          <h3>Cricket Legends Trivia</h3>
+          <p>Test your cricket knowledge! Answer questions about Sachin, Virat, Dhoni, and iconic Indian cricket moments.</p>
+          <span class="read-more">Play Quiz Now <i class="fa-solid fa-gamepad"></i></span>
+        </div>
+        <!-- Bollywood Quiz Card -->
+        <div class="glass-card katha-item" onclick="startQuiz('bollywood')">
+          <div class="katha-icon" style="background: rgba(255,0,127,0.1); border-color: var(--accent-pink); color: var(--accent-pink);"><i class="fa-solid fa-film"></i></div>
+          <h3>Bollywood Trivia Quiz</h3>
+          <p>How well do you know Hindi cinema? Answer questions on blockbuster films, iconic dialogues, and actors!</p>
           <span class="read-more">Play Quiz Now <i class="fa-solid fa-gamepad"></i></span>
         </div>
         <!-- Smartlink Reward Offer Card (High CTR Spin Wheel integration) -->
@@ -455,6 +610,104 @@
       <div style="width:100%; min-height:90px; padding: 1rem 0;">
         <script async="async" data-cfasync="false" src="https://pl29785603.effectivecpmnetwork.com/966409292fb639722bff7c995567f89d/invoke.js"></script>
         <div id="container-966409292fb639722bff7c995567f89d"></div>
+      </div>
+    </div>
+
+    <!-- TAB CONTENT: FIFA ZONE -->
+    <div id="fifa-tab" class="tab-content">
+      <!-- Tab Banner Ad -->
+      <div class="adsterra-tab-banner" style="margin-bottom: 1.5rem; text-align: center;">
+        <script>
+          atOptions = {
+            'key' : '234349c661143684049f8d5091c6eefd',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/234349c661143684049f8d5091c6eefd/invoke.js"></script>
+      </div>
+
+      <!-- Player Comparator -->
+      <div class="glass-card tool-card" style="margin-bottom: 2rem;">
+        <div class="card-header">
+          <h3><i class="fa-solid fa-futbol"></i> Football Legends Stats Comparator</h3>
+          <span class="badge badge-ai">FIFA Zone</span>
+        </div>
+        <p class="tool-desc">Compare career statistics of football's greatest players side-by-side.</p>
+        <div class="grid-two-cols" style="margin-top: 1rem;">
+          <div class="input-group">
+            <label for="player1-select">Player 1</label>
+            <select id="player1-select">
+              <option value="messi">Lionel Messi</option>
+              <option value="ronaldo">Cristiano Ronaldo</option>
+              <option value="mbappe">Kylian Mbappe</option>
+              <option value="neymar">Neymar Jr</option>
+              <option value="pele">Pele</option>
+              <option value="maradona">Diego Maradona</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="player2-select">Player 2</label>
+            <select id="player2-select">
+              <option value="ronaldo">Cristiano Ronaldo</option>
+              <option value="messi">Lionel Messi</option>
+              <option value="mbappe">Kylian Mbappe</option>
+              <option value="neymar">Neymar Jr</option>
+              <option value="pele">Pele</option>
+              <option value="maradona">Diego Maradona</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" style="margin-top: 1rem;" onclick="compareFootballPlayers()">Compare Players</button>
+        <div id="player-comparison-results" style="display:none; margin-top: 1.5rem;">
+          <div class="grid-two-cols" id="player-stats-grid" style="gap: 1rem;"></div>
+        </div>
+      </div>
+
+      <!-- Score Predictor Game -->
+      <div class="glass-card tool-card" style="margin-bottom: 2rem;">
+        <div class="card-header">
+          <h3><i class="fa-solid fa-bullseye"></i> Match Score Predictor</h3>
+          <span class="badge badge-ai">Fun Game</span>
+        </div>
+        <p class="tool-desc">Select two teams and predict the final match score to test your football intuition!</p>
+        <div class="grid-two-cols" style="margin-top: 1rem;">
+          <div class="input-group">
+            <label for="team1-select">Home Team</label>
+            <select id="team1-select">
+              <option value="Brazil">🇧🇷 Brazil</option>
+              <option value="Argentina">🇦🇷 Argentina</option>
+              <option value="France">🇫🇷 France</option>
+              <option value="Germany">🇩🇪 Germany</option>
+              <option value="England">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</option>
+              <option value="Spain">🇪🇸 Spain</option>
+              <option value="Portugal">🇵🇹 Portugal</option>
+              <option value="Italy">🇮🇹 Italy</option>
+              <option value="India">🇮🇳 India</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="team2-select">Away Team</label>
+            <select id="team2-select">
+              <option value="Argentina">🇦🇷 Argentina</option>
+              <option value="Brazil">🇧🇷 Brazil</option>
+              <option value="France">🇫🇷 France</option>
+              <option value="Germany">🇩🇪 Germany</option>
+              <option value="England">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</option>
+              <option value="Spain">🇪🇸 Spain</option>
+              <option value="Portugal">🇵🇹 Portugal</option>
+              <option value="Italy">🇮🇹 Italy</option>
+              <option value="India">🇮🇳 India</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary" style="margin-top: 1rem; background: linear-gradient(135deg, #00b4d8, #0077b6);" onclick="predictMatchScore()">🎯 Predict Match Score</button>
+        <div class="calculator-results" id="score-predictor-results" style="display:none; margin-top: 1.5rem; text-align: center; flex-direction: column; gap: 1rem;">
+          <div id="score-display" style="font-size: 2.5rem; font-weight: 800; color: var(--accent-gold); text-shadow: 0 0 15px rgba(255,183,3,0.4);"></div>
+          <p id="score-analysis" style="color: var(--text-secondary); font-size: 0.95rem;"></p>
+        </div>
       </div>
     </div>
 

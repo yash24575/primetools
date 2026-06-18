@@ -1246,3 +1246,87 @@ footer {
   box-shadow: 0 0 20px rgba(255,183,3,0.15);
 }
 
+/* ── NEW FEATURES: AI OUTPUT BOX ──────────────────────── */
+.ai-output-box {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ai-output-box h4 {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+
+.options-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.options-list li {
+  background: rgba(255,183,3,0.05);
+  border: 1px solid rgba(255,183,3,0.15);
+  border-radius: 8px;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.options-list li:hover {
+  background: rgba(255,183,3,0.12);
+  border-color: var(--accent-gold);
+  transform: translateX(4px);
+}
+
+.options-list li::after {
+  content: "📋";
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.options-list li:hover::after {
+  opacity: 1;
+}
+
+/* ── FIFA TAB STYLING ──────────────────────────────────── */
+.badge-finance {
+  background: rgba(0,180,216,0.15);
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
+}
+
+.highlight-gold { color: var(--accent-gold) !important; }
+.highlight-cyan { color: var(--accent-blue) !important; }
+.return-gain { color: #4caf50 !important; }
+
+/* ── ASTRO RESULTS BOX ─────────────────────────────────── */
+.astro-results-box {
+  background: rgba(255,111,0,0.04);
+  border: 1px solid rgba(255,111,0,0.12);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+/* ── RESPONSIVE: NEW FEATURE GRIDS ────────────────────── */
+@media (max-width: 768px) {
+  .astro-numbers-row {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+}
+
