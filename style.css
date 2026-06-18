@@ -994,3 +994,73 @@ footer {
   align-items: center;
   gap: 0.5rem;
 }
+
+/* FAQ SECTION & ACCORDION */
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.01);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.faq-toggle {
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+}
+
+.faq-toggle i {
+  color: var(--text-secondary);
+  transition: transform 0.3s ease;
+}
+
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding: 0 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.faq-item.active {
+  border-color: var(--accent-gold);
+  background: rgba(255, 183, 3, 0.03);
+}
+
+.faq-item.active .faq-toggle {
+  color: var(--accent-gold);
+}
+
+/* LEGAL LINKS IN FOOTER */
+.footer-legal-links a {
+  transition: color 0.3s ease;
+}
+
+.footer-legal-links a:hover {
+  color: var(--accent-gold) !important;
+}

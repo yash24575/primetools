@@ -297,3 +297,48 @@ function nextQuestion() {
 function closeQuizModal() {
   document.getElementById("quiz-modal").style.display = "none";
 }
+
+// ── FAQ ACCORDION LOGIC ─────────────────────────────────────
+function toggleFaq(button) {
+  const item = button.parentElement;
+  const content = item.querySelector('.faq-content');
+  const icon = button.querySelector('i');
+  
+  // Toggle active class on item
+  item.classList.toggle('active');
+  
+  if (item.classList.contains('active')) {
+    content.style.maxHeight = content.scrollHeight + "px";
+    content.style.paddingTop = "1rem";
+    icon.style.transform = "rotate(180deg)";
+  } else {
+    content.style.maxHeight = null;
+    content.style.paddingTop = "0";
+    icon.style.transform = "rotate(0deg)";
+  }
+}
+
+// ── LEGAL MODAL LOGIC ───────────────────────────────────────
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.style.display = "flex";
+  }
+}
+
+function closeModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.style.display = "none";
+  }
+}
+
+// Close modals when clicking outside the modal content box
+window.onclick = function(event) {
+  const modals = document.querySelectorAll('.modal');
+  modals.forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+}

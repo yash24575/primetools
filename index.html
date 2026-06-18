@@ -81,6 +81,20 @@
 
     <!-- TAB CONTENT: WEALTH PLANNERS -->
     <div id="wealth-tab" class="tab-content active">
+      <!-- Tab Banner Ad (728x90) -->
+      <div class="adsterra-tab-banner" style="margin-bottom: 1.5rem; text-align: center;">
+        <script>
+          atOptions = {
+            'key' : '234349c661143684049f8d5091c6eefd',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/234349c661143684049f8d5091c6eefd/invoke.js"></script>
+      </div>
+
       <div class="grid-two-cols">
         <!-- SIP Calculator Card -->
         <div class="glass-card tool-card">
@@ -166,6 +180,20 @@
 
     <!-- TAB CONTENT: AI CREATOR TOOLS -->
     <div id="creator-tab" class="tab-content">
+      <!-- Tab Banner Ad (728x90) -->
+      <div class="adsterra-tab-banner" style="margin-bottom: 1.5rem; text-align: center;">
+        <script>
+          atOptions = {
+            'key' : '234349c661143684049f8d5091c6eefd',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/234349c661143684049f8d5091c6eefd/invoke.js"></script>
+      </div>
+
       <div class="grid-two-cols">
         <!-- Title & Hooks Generator -->
         <div class="glass-card tool-card">
@@ -221,6 +249,20 @@
 
     <!-- TAB CONTENT: TRIVIA QUIZZES -->
     <div id="quizzes-tab" class="tab-content">
+      <!-- Tab Banner Ad (728x90) -->
+      <div class="adsterra-tab-banner" style="margin-bottom: 1.5rem; text-align: center;">
+        <script>
+          atOptions = {
+            'key' : '234349c661143684049f8d5091c6eefd',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/234349c661143684049f8d5091c6eefd/invoke.js"></script>
+      </div>
+
       <div class="kathas-grid">
         <!-- Quiz 1 -->
         <div class="glass-card katha-item" onclick="startQuiz('business')">
@@ -291,6 +333,37 @@
       </div>
     </div>
 
+    <!-- Collapsible FAQ Accordion Section -->
+    <div class="faq-container glass-card" style="margin-top: 3rem; padding: 2rem;">
+      <h3 class="section-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-circle-question"></i> FAQ & Help Desk</h3>
+      <div class="faq-accordion">
+        <div class="faq-item">
+          <button class="faq-toggle" onclick="toggleFaq(this)">
+            <span>What is PrimeTools AI?</span> <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-content">
+            <p>PrimeTools AI is a premium hub for content creators and retail investors. We provide high-accuracy SIP and Compound Interest planners, SEO title/hook generators, and engaging trivia quizzes to boost user engagement.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-toggle" onclick="toggleFaq(this)">
+            <span>How do I claim my $5 Honeygain and $1 Pawns.app bonuses?</span> <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-content">
+            <p>Simply scroll to the "Featured Passive Income Suite" at the bottom of the page, click the respective buttons ("Claim $5 Signup Bonus" or "Claim $1 Signup Bonus"), and sign up. The bonus rewards will be credited directly to your platform dashboard accounts instantly.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-toggle" onclick="toggleFaq(this)">
+            <span>Is PrimeTools AI free to use?</span> <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-content">
+            <p>Yes, all wealth planners, tag builders, and trivia quiz systems on PrimeTools AI are 100% free of charge and require no subscription or signups.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Adsterra Native Banner -->
     <div class="adsterra-banner-slot">
       <span class="adsterra-badge">RECOMMENDED FOR YOU</span>
@@ -306,6 +379,11 @@
   <footer>
     <div class="footer-content">
       <p>&copy; 2026 PrimeTools AI. High-performance calculators and creators utilities.</p>
+      <div class="footer-legal-links" style="margin: 0.5rem 0; font-size: 0.85rem; color: var(--text-secondary);">
+        <a href="javascript:void(0)" onclick="openModal('privacy-modal')" style="color: var(--text-secondary); text-decoration: none; margin: 0 0.5rem;">Privacy Policy</a> | 
+        <a href="javascript:void(0)" onclick="openModal('terms-modal')" style="color: var(--text-secondary); text-decoration: none; margin: 0 0.5rem;">Terms of Service</a> |
+        <a href="javascript:void(0)" onclick="openModal('disclaimer-modal')" style="color: var(--text-secondary); text-decoration: none; margin: 0 0.5rem;">Disclaimer</a>
+      </div>
       <div class="social-links">
         <a href="#"><i class="fa-brands fa-youtube"></i></a>
         <a href="#"><i class="fa-brands fa-instagram"></i></a>
@@ -329,6 +407,48 @@
           <div class="quiz-score-indicator">Score: <span id="quiz-current-score" class="highlight-gold">0</span></div>
           <button id="quiz-next-btn" class="btn btn-primary" style="display: none;" onclick="nextQuestion()">Next Question</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRIVACY POLICY MODAL -->
+  <div id="privacy-modal" class="modal">
+    <div class="glass-card modal-content">
+      <span class="close-btn" onclick="closeModal('privacy-modal')">&times;</span>
+      <h2><i class="fa-solid fa-user-shield"></i> Privacy Policy</h2>
+      <div class="modal-body" style="font-size: 0.95rem; text-align: left; max-height: 50vh; overflow-y: auto; color: var(--text-secondary);">
+        <p>Your privacy is important to us. This Privacy Policy explains how PrimeTools AI collects, uses, and safeguards your information when you visit our website.</p>
+        <h4 style="margin-top: 1rem; color: var(--accent-gold);">Information Collection</h4>
+        <p>We do not collect personal identifying information. We only use browser local storage to save your trivia scores locally. Third-party advertising networks (like Adsterra) may use cookies or device identifiers to serve personalized ads.</p>
+        <h4 style="margin-top: 1rem; color: var(--accent-gold);">Third-Party Advertisers</h4>
+        <p>We use third-party advertising companies to serve ads when you visit our website. These companies may use information about your visits to this and other websites in order to provide advertisements about goods and services of interest to you.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TERMS OF SERVICE MODAL -->
+  <div id="terms-modal" class="modal">
+    <div class="glass-card modal-content">
+      <span class="close-btn" onclick="closeModal('terms-modal')">&times;</span>
+      <h2><i class="fa-solid fa-file-contract"></i> Terms of Service</h2>
+      <div class="modal-body" style="font-size: 0.95rem; text-align: left; max-height: 50vh; overflow-y: auto; color: var(--text-secondary);">
+        <p>By accessing or using PrimeTools AI, you agree to comply with and be bound by these Terms of Service.</p>
+        <h4 style="margin-top: 1rem; color: var(--accent-gold);">Use of Services</h4>
+        <p>You agree to use our calculators, creator utilities, and quizzes for personal, non-commercial purposes only. Any exploitation of security flaws or automation of calculator systems is prohibited.</p>
+        <h4 style="margin-top: 1rem; color: var(--accent-gold);">Disclaimer of Warranties</h4>
+        <p>The calculators and templates are provided "as-is". We do not guarantee financial success or viral growth using our systems. Investment calculations are estimates only.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCLAIMER MODAL -->
+  <div id="disclaimer-modal" class="modal">
+    <div class="glass-card modal-content">
+      <span class="close-btn" onclick="closeModal('disclaimer-modal')">&times;</span>
+      <h2><i class="fa-solid fa-triangle-exclamation"></i> Financial Disclaimer</h2>
+      <div class="modal-body" style="font-size: 0.95rem; text-align: left; max-height: 50vh; overflow-y: auto; color: var(--text-secondary);">
+        <p><strong>IMPORTANT:</strong> All financial calculations, compounding estimations, and investment growth figures shown on PrimeTools AI are strictly for educational and illustrative purposes.</p>
+        <p style="margin-top: 0.5rem;">We do not offer professional investment advice. Mutual funds and stock investments are subject to market risks. Please consult a certified financial advisor before making actual investments.</p>
       </div>
     </div>
   </div>
