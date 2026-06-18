@@ -1162,3 +1162,66 @@ footer {
     display: none;
   }
 }
+
+/* ── ASTRO ZONE CUSTOM STYLES ─────────────────────────────── */
+.astro-body {
+  background: #060408 !important; /* Deep dark Vedic night sky theme */
+}
+
+.glow-saffron-large {
+  width: 55vw;
+  height: 55vw;
+  top: -10vw;
+  left: -15vw;
+  background: radial-gradient(circle, rgba(255, 111, 0, 0.18), transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.glow-gold-large {
+  width: 45vw;
+  height: 45vw;
+  bottom: -5vw;
+  right: -10vw;
+  background: radial-gradient(circle, rgba(255, 183, 3, 0.15), transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.astro-card {
+  border: 1px solid rgba(255, 111, 0, 0.15) !important;
+  box-shadow: 0 8px 32px 0 rgba(255, 111, 0, 0.05) !important;
+}
+
+.astro-card:hover {
+  border-color: rgba(255, 111, 0, 0.35) !important;
+  box-shadow: 0 8px 32px 0 rgba(255, 111, 0, 0.1) !important;
+}
+
+.astro-results-box {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 111, 0, 0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.astro-result-section {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.astro-result-section:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.score-circle-wrapper {
+  background: radial-gradient(circle, rgba(255,183,3,0.1), transparent);
+  border: 3px double var(--accent-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255,183,3,0.15);
+}
+

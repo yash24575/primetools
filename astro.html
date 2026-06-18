@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrimeTools AI - Daily Horoscope & Kundli Matcher</title>
+  <meta name="description" content="Check your Daily Rashifal (Horoscope) and test Kundli Compatibility Matcher online. Premium Astro & Devotional Zone by PrimeTools.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="astro-body">
+
+  <!-- Neon Glowing Saffron Background Shapes -->
+  <div class="neon-glow glow-saffron-large"></div>
+  <div class="neon-glow glow-gold-large"></div>
+
+  <!-- Sticky Side Banners (Left & Right) -->
+  <div class="sticky-ad-left">
+    <span class="adsterra-badge">AD</span>
+    <div class="side-ad-wrapper">
+      <script>
+        atOptions = {
+          'key' : '234349c661143684049f8d5091c6eefd',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script src="https://www.highperformanceformat.com/234349c661143684049f8d5091c6eefd/invoke.js"></script>
+    </div>
+  </div>
+  <div class="sticky-ad-right">
+    <span class="adsterra-badge">AD</span>
+    <div class="side-ad-wrapper">
+      <script>
+        atOptions = {
+          'key' : '234349c661143684049f8d5091c6eefd',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script src="https://www.highperformanceformat.com/234349c661143684049f8d5091c6eefd/invoke.js"></script>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <i class="fa-solid fa-om logo-spark" style="color: var(--accent-gold); text-shadow: 0 0 10px var(--accent-gold);"></i>
+        <span>PrimeTools <span class="accent-text">Astro</span></span>
+      </div>
+      <div class="header-tagline">Premium Astro & Devotional Zone</div>
+    </div>
+  </header>
+
+  <main class="main-container">
+
+    <!-- Adsterra Leaderboard Banner (728x90) -->
+    <div class="adsterra-banner-slot" style="margin-bottom: 1rem;">
+      <span class="adsterra-badge">ADVERTISEMENT</span>
+      <div style="text-align: center; width: 100%; overflow: hidden;">
+        <script>
+          atOptions = {
+            'key' : '234349c661143684049f8d5091c6eefd',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/234349c661143684049f8d5091c6eefd/invoke.js"></script>
+      </div>
+    </div>
+
+    <!-- Active Astro Tools Layout -->
+    <div class="grid-two-cols">
+      
+      <!-- Daily Rashifal Card -->
+      <div class="glass-card tool-card astro-card">
+        <div class="card-header">
+          <h3><i class="fa-solid fa-sun-dust"></i> दैनिक राशिफल (Daily Horoscope)</h3>
+          <span class="badge badge-finance" style="background: rgba(255, 111, 0, 0.2); color: var(--accent-saffron); border-color: var(--accent-saffron);">Free Prediction</span>
+        </div>
+        <p class="tool-desc">Select your Zodiac Sign (Rashi) to get today's personalized horoscope predictions, lucky numbers & cosmic remedies.</p>
+        
+        <div class="calculator-inputs">
+          <div class="input-group">
+            <label for="astro-sign" style="color: var(--accent-gold);">अपना राशि चुनें (Select Zodiac Sign)</label>
+            <select id="astro-sign" style="background: rgba(13, 15, 30, 0.85); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 0.75rem; width: 100%; font-family: var(--font-body);">
+              <option value="mesh">मेष (Aries)</option>
+              <option value="vrishabh">वृषभ (Taurus)</option>
+              <option value="mithun">मिथुन (Gemini)</option>
+              <option value="kark">कर्क (Cancer)</option>
+              <option value="sinh">सिंह (Leo)</option>
+              <option value="kanya">कन्या (Virgo)</option>
+              <option value="tula">तुला (Libra)</option>
+              <option value="vrishchik">वृश्चिक (Scorpio)</option>
+              <option value="dhanu">धनु (Sagittarius)</option>
+              <option value="makar">मकर (Capricorn)</option>
+              <option value="kumbh">कुंभ (Aquarius)</option>
+              <option value="meen">मीन (Pisces)</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-saffron), var(--accent-gold)); box-shadow: 0 4px 15px var(--glow-saffron);" onclick="checkHoroscope()">आज का राशिफल देखें</button>
+        </div>
+
+        <!-- Horoscope Prediction Results -->
+        <div class="calculator-results astro-results-box" id="horoscope-results" style="display: none; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
+          <div class="astro-result-section">
+            <h4 style="color: var(--accent-gold); margin-bottom: 0.5rem;"><i class="fa-solid fa-briefcase"></i> करियर और धन (Career & Finance)</h4>
+            <p id="res-astro-career" class="res-desc" style="color: var(--text-secondary); font-size: 0.95rem;"></p>
+          </div>
+          <div class="astro-result-section">
+            <h4 style="color: var(--accent-pink); margin-bottom: 0.5rem;"><i class="fa-solid fa-heart"></i> प्रेम और संबंध (Love & Relationship)</h4>
+            <p id="res-astro-love" class="res-desc" style="color: var(--text-secondary); font-size: 0.95rem;"></p>
+          </div>
+          <div class="astro-result-section">
+            <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;"><i class="fa-solid fa-notes-medical"></i> स्वास्थ्य (Health)</h4>
+            <p id="res-astro-health" class="res-desc" style="color: var(--text-secondary); font-size: 0.95rem;"></p>
+          </div>
+          <div class="astro-result-section highlight-remedy" style="background: rgba(255, 111, 0, 0.08); border-left: 3px solid var(--accent-saffron); padding: 0.75rem; border-radius: 4px;">
+            <h4 style="color: var(--accent-saffron); margin-bottom: 0.5rem;"><i class="fa-solid fa-dharmachakra"></i> उपाय (Daily Remedy)</h4>
+            <p id="res-astro-remedy" class="res-desc" style="color: var(--text-primary); font-size: 0.95rem;"></p>
+          </div>
+          <div class="astro-numbers-row" style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+            <div style="flex: 1; text-align: center; background: rgba(255,255,255,0.03); padding: 0.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+              <span style="font-size: 0.8rem; color: var(--text-secondary);">Lucky Number</span>
+              <div id="res-astro-number" style="font-size: 1.5rem; font-weight: 700; color: var(--accent-gold);"></div>
+            </div>
+            <div style="flex: 1; text-align: center; background: rgba(255,255,255,0.03); padding: 0.5rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+              <span style="font-size: 0.8rem; color: var(--text-secondary);">Lucky Color</span>
+              <div id="res-astro-color" style="font-size: 1.1rem; font-weight: 600; color: var(--text-primary);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Kundli Compatibility Matcher Card -->
+      <div class="glass-card tool-card astro-card">
+        <div class="card-header">
+          <h3><i class="fa-solid fa-om"></i> कुंडली मिलान (Compatibility Matcher)</h3>
+          <span class="badge badge-ai" style="background: rgba(0, 180, 216, 0.2); color: var(--accent-blue); border-color: var(--accent-blue);">Astro Engine</span>
+        </div>
+        <p class="tool-desc">Enter details to calculate compatibility matching percentage between two individuals based on zodiac traits.</p>
+
+        <div class="calculator-inputs">
+          <div class="input-group">
+            <label for="match-name-1">Your Name (आपका नाम)</label>
+            <input type="text" id="match-name-1" placeholder="e.g. Rahul">
+          </div>
+          <div class="input-group">
+            <label for="match-sign-1">Your Rashi (आपकी राशि)</label>
+            <select id="match-sign-1" style="background: rgba(13, 15, 30, 0.85); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 0.75rem; width: 100%; font-family: var(--font-body);">
+              <option value="mesh">मेष (Aries)</option>
+              <option value="vrishabh">वृषभ (Taurus)</option>
+              <option value="mithun">मिथुन (Gemini)</option>
+              <option value="kark">कर्क (Cancer)</option>
+              <option value="sinh">सिंह (Leo)</option>
+              <option value="kanya">कन्या (Virgo)</option>
+              <option value="tula">तुला (Libra)</option>
+              <option value="vrishchik">वृश्चिक (Scorpio)</option>
+              <option value="dhanu">धनु (Sagittarius)</option>
+              <option value="makar">मकर (Capricorn)</option>
+              <option value="kumbh">कुंभ (Aquarius)</option>
+              <option value="meen">मीन (Pisces)</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="match-name-2">Partner's Name (साथी का नाम)</label>
+            <input type="text" id="match-name-2" placeholder="e.g. Priya">
+          </div>
+          <div class="input-group">
+            <label for="match-sign-2">Partner's Rashi (साथी की राशि)</label>
+            <select id="match-sign-2" style="background: rgba(13, 15, 30, 0.85); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 0.75rem; width: 100%; font-family: var(--font-body);">
+              <option value="vrishabh">वृषभ (Taurus)</option>
+              <option value="mesh">मेष (Aries)</option>
+              <option value="mithun">मिथुन (Gemini)</option>
+              <option value="kark">कर्क (Cancer)</option>
+              <option value="sinh">सिंह (Leo)</option>
+              <option value="kanya">कन्या (Virgo)</option>
+              <option value="tula">तुला (Libra)</option>
+              <option value="vrishchik">वृश्चिक (Scorpio)</option>
+              <option value="dhanu">धनु (Sagittarius)</option>
+              <option value="makar">मकर (Capricorn)</option>
+              <option value="kumbh">कुंभ (Aquarius)</option>
+              <option value="meen">मीन (Pisces)</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-saffron), var(--accent-gold));" onclick="matchKundli()">चेक मिलान गुण (Match Compatibility)</button>
+        </div>
+
+        <!-- Matching Results -->
+        <div class="calculator-results astro-results-box" id="match-results" style="display: none; flex-direction: column; gap: 1rem; margin-top: 1.5rem; text-align: center;">
+          <div class="score-circle-wrapper" style="position: relative; width: 120px; height: 120px; margin: 0 auto;">
+            <div id="compatibility-percent" style="font-size: 2.2rem; font-weight: 800; color: var(--accent-gold); line-height: 120px; text-shadow: 0 0 15px rgba(255,183,3,0.4);">0%</div>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.02); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;" id="match-title-status">Status</h4>
+            <p id="match-description" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5;"></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Adsterra Mid-Section Banner (728x90) -->
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.4rem; overflow: hidden; margin: 2rem 0; max-height: 250px;">
+      <span class="adsterra-badge">ADVERTISEMENT</span>
+      <div class="adsterra-tab-banner" style="margin: 0; text-align: center;">
+        <script>
+          atOptions = {
+            'key' : '234349c661143684049f8d5091c6eefd',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/234349c661143684049f8d5091c6eefd/invoke.js"></script>
+      </div>
+    </div>
+
+    <!-- Featured Passive Income Suite -->
+    <h3 class="section-title"><i class="fa-solid fa-hand-holding-dollar"></i> Astro Rewards & Earning Zone</h3>
+    <div class="passive-grid">
+      <!-- Honeygain Premium Affiliate Ad Card -->
+      <div class="honeygain-ad-card">
+        <div class="hg-badge">HIGH CTR</div>
+        <div class="hg-content">
+          <div class="hg-logo-sec">
+            <i class="fa-solid fa-bee hg-bee-icon"></i>
+            <span>Honeygain</span>
+          </div>
+          <h4>Share Internet & Earn Passive Income</h4>
+          <p>Get a <strong>$5 instant bonus</strong> when you sign up today! Earn passive revenue daily.</p>
+          <a href="https://join.honeygain.com/YASHDBFA19" target="_blank" class="btn btn-honeygain">
+            <i class="fa-solid fa-gift"></i> Claim $5 Signup Bonus
+          </a>
+        </div>
+      </div>
+      <!-- Spin Wheel Integration -->
+      <div class="pawns-ad-card" onclick="openSpinWheel()" style="cursor: pointer;">
+        <div class="hg-badge pawns-badge" style="background: var(--accent-pink);">LUCKY SPIN</div>
+        <div class="hg-content">
+          <div class="hg-logo-sec pawns-logo-sec">
+            <i class="fa-solid fa-dharmachakra fa-spin" style="animation: fa-spin 8s linear infinite; color: var(--accent-pink);"></i>
+            <span>Lucky Astro Wheel</span>
+          </div>
+          <h4>Spin & Win Premium Graphic Templates</h4>
+          <p>Launch our interactive spin wheel and win free creator bundles, cash prizes, and cards instantly.</p>
+          <button class="btn btn-pawns" style="background: linear-gradient(135deg, var(--accent-pink), var(--accent-gold));">
+            <i class="fa-solid fa-dharmachakra"></i> Tap to Spin Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="faq-container glass-card" style="margin-top: 3rem; padding: 2rem;">
+      <h3 class="section-title" style="margin-bottom: 1.5rem;"><i class="fa-solid fa-circle-question"></i> Astrology Zone FAQ</h3>
+      <div class="faq-accordion">
+        <div class="faq-item">
+          <button class="faq-toggle" onclick="toggleFaq(this)">
+            <span>How does Rashifal prediction work?</span> <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-content">
+            <p>Our daily horoscope is updated dynamically based on Vedic Astrology transitions, predicting career cycles, romance energies, health patterns, and personalized remedies for the 12 signs.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-toggle" onclick="toggleFaq(this)">
+            <span>What calculations are used in Kundli Matcher?</span> <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-content">
+            <p>The Kundli Matcher maps gunas and element matching categories (Fire, Water, Air, Earth) between partners' signs to calculate compatibility percentages and compatibility forecasts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2026 PrimeTools Astro. Vedic Astrology calculators and tools.</p>
+      <div class="footer-legal-links" style="margin: 0.5rem 0; font-size: 0.85rem; color: var(--text-secondary);">
+        <a href="javascript:void(0)" onclick="openModal('privacy-modal')" style="color: var(--text-secondary); text-decoration: none; margin: 0 0.5rem;">Privacy Policy</a> | 
+        <a href="javascript:void(0)" onclick="openModal('terms-modal')" style="color: var(--text-secondary); text-decoration: none; margin: 0 0.5rem;">Terms of Service</a> |
+        <a href="javascript:void(0)" onclick="openModal('disclaimer-modal')" style="color: var(--text-secondary); text-decoration: none; margin: 0 0.5rem;">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- PRIVACY POLICY MODAL -->
+  <div id="privacy-modal" class="modal">
+    <div class="glass-card modal-content">
+      <span class="close-btn" onclick="closeModal('privacy-modal')">&times;</span>
+      <h2><i class="fa-solid fa-user-shield"></i> Privacy Policy</h2>
+      <div class="modal-body" style="font-size: 0.95rem; text-align: left; max-height: 50vh; overflow-y: auto; color: var(--text-secondary);">
+        <p>Your privacy is important to us. This page does not store your name or zodiac matching metrics on external servers. Third-party advertising networks (like Adsterra) may use cookies to serve personalized advertisements.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TERMS OF SERVICE MODAL -->
+  <div id="terms-modal" class="modal">
+    <div class="glass-card modal-content">
+      <span class="close-btn" onclick="closeModal('terms-modal')">&times;</span>
+      <h2><i class="fa-solid fa-file-contract"></i> Terms of Service</h2>
+      <div class="modal-body" style="font-size: 0.95rem; text-align: left; max-height: 50vh; overflow-y: auto; color: var(--text-secondary);">
+        <p>By using PrimeTools Astro, you agree that these predictions are estimates only and should not be used as professional counseling or binding advice.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCLAIMER MODAL -->
+  <div id="disclaimer-modal" class="modal">
+    <div class="glass-card modal-content">
+      <span class="close-btn" onclick="closeModal('disclaimer-modal')">&times;</span>
+      <h2><i class="fa-solid fa-triangle-exclamation"></i> Astro Disclaimer</h2>
+      <div class="modal-body" style="font-size: 0.95rem; text-align: left; max-height: 50vh; overflow-y: auto; color: var(--text-secondary);">
+        <p>Astrology calculations and horoscope predictions are for personal amusement and entertainment purposes. We make no guarantees about absolute accuracy of matchmaking profiles.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPIN WHEEL MODAL -->
+  <div id="spin-modal" class="modal">
+    <div class="glass-card modal-content" style="max-width: 480px; text-align: center;">
+      <span class="close-btn" onclick="closeModal('spin-modal')">&times;</span>
+      <h2><i class="fa-solid fa-dharmachakra"></i> Lucky Astro Spin</h2>
+      <div class="modal-body" style="align-items: center; gap: 1rem;">
+        <p style="color: var(--text-secondary); font-size: 0.95rem;">Spin the cosmic wheel to unlock rewards and graphic asset downloads!</p>
+        
+        <div class="wheel-container" style="position: relative; margin: 1.5rem 0; width: 260px; height: 260px;">
+          <canvas id="wheel-canvas" width="260" height="260" style="border-radius: 50%; border: 4px solid var(--accent-pink); box-shadow: 0 0 20px var(--glow-pink); transition: transform 6s cubic-bezier(0.1, 0.8, 0.1, 1);"></canvas>
+          <div class="wheel-pointer" style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 15px solid transparent; border-right: 15px solid transparent; border-top: 25px solid var(--accent-pink); z-index: 10;"></div>
+        </div>
+
+        <button id="spin-btn" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent-pink), var(--accent-gold)); box-shadow: 0 4px 15px var(--glow-pink); width: 80%;" onclick="spinTheWheel()">TAP TO SPIN</button>
+        
+        <div id="spin-result-box" class="result-row highlight-gold" style="display: none; justify-content: center; font-size: 1.15rem; font-weight: 700; margin-top: 1rem;">
+          Result goes here...
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="astro.js"></script>
+</body>
+</html>
