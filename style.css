@@ -738,6 +738,19 @@ footer {
     justify-content: center;
     width: 100%;
   }
+  .grid-two-cols {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+  .main-container {
+    padding: 1.5rem 1rem;
+  }
+  .passive-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .faq-container {
+    padding: 1.25rem !important;
+  }
 }
 
 /* HONEYGAIN AFFILIATE CARD */
@@ -1098,7 +1111,7 @@ footer {
   padding: 0 1.5rem;
   color: var(--text-secondary);
   font-size: 0.95rem;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .faq-item.active {
@@ -1106,9 +1119,17 @@ footer {
   background: rgba(255, 183, 3, 0.03);
 }
 
+.faq-item.active .faq-content {
+  max-height: 1000px !important;
+  padding-bottom: 1.25rem;
+  padding-top: 0.5rem;
+  color: #e0e2ee;
+}
+
 .faq-item.active .faq-toggle {
   color: var(--accent-gold);
 }
+
 
 /* LEGAL LINKS IN FOOTER */
 .footer-legal-links a {
